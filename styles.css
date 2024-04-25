@@ -41,7 +41,7 @@ body {
     justify-content: center;
 }
 
-header {
+#header {
     background: rgb(161, 154, 154);
     color: white;
     padding: 10px 0;
@@ -49,17 +49,34 @@ header {
     border-radius: 10px;
     width: 100%;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 #card-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+    grid-template-columns: repeat(1, 1fr); /* Default to 1 column for mobile devices */
     gap: 20px; /* Sets space between cards */
     justify-content: center;
-    align-items: stretch; 
-    padding: 20px; /* Adds padding around the grid */
-    margin: auto;
+    align-items: stretch;
     max-width: 1200px; /* Maximum width of the container */
+}
+
+/* Media query for tablets: screens that are at least 768px wide */
+@media (min-width: 768px) {
+    #card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+}
+
+/* Media query for laptops/desktops: screens that are at least 1024px wide */
+@media (min-width: 1024px) {
+    #card-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+    }
 }
 
 .card {
@@ -101,5 +118,5 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #8064e6;
 }
