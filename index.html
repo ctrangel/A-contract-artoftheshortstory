@@ -8,14 +8,6 @@
   </head>
   <body>
     <script>
-      function playAudio(audioId) {
-        var audio = document.getElementById(audioId);
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      }
       const characters = [
         {
           name: "Narrator",
@@ -29,7 +21,7 @@
           description:
             "The manager at Joysticks who enforces strict workplace policies, including the pivotal moment of dismissing an employee, which impacts the story's social dynamics.",
           image: "./media/pics/m3.avif",
-          audio: "path_to_mr_frendt_audio.mp3",
+          audio: "media/song/with_a_side_of_bees.wav",
         },
         {
           name: "Min",
@@ -98,26 +90,37 @@
             <img src="${char.image}" alt="${char.name}">
             <h3>${char.name}</h3>
             <p>${char.description}</p>
-            <button onclick="playAudio('audio${index}')">Play Soundtrack</button>
+            <button onclick="playAudio('audio${index}', this)">Play Soundtrack</button>
             <audio id="audio${index}" src="${char.audio}"></audio>
         `;
           container.appendChild(card);
         });
       }
 
-      function playAudio(audioId) {
+      function playAudio(audioId, button) {
         var audio = document.getElementById(audioId);
-        if (audio.paused) {
-          audio.play();
+        if (audio) {
+          if (audio.paused) {
+            audio.play().catch((e) => {
+              console.error("Error attempting to play audio:", e);
+              console.log(audioId);
+              console.log(audio);
+              // Reset button text in case of error
+              button.textContent = "Play Soundtrack";
+            });
+            button.textContent = "||";
+          } else {
+            audio.pause();
+            button.textContent = "Play Soundtrack";
+          }
         } else {
-          audio.pause();
+          console.log("No audio element found with id:", audioId);
         }
       }
 
       // Generate cards on page load
       window.onload = generateCards;
     </script>
-    <script src="/script.js"></script>
     <div class="container">
       <header class="row">
         <div>
