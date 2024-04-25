@@ -12,7 +12,7 @@ body {
     display: flex; /* Makes body flex container */
     flex-direction: column; /* Aligns children vertically */
     justify-content: center; /* Centers content vertically */
-    align-items: center; /* Centers content horizontally */
+    align-items: center; 
 }
 
 .container {
@@ -48,7 +48,7 @@ body {
 
 .card img {
     width: 100%;
-    height: auto;
+    height: 180px;
     border-radius: 5px;
 }
 
